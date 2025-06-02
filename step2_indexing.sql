@@ -1,7 +1,7 @@
 CREATE INDEX idx_categories ON categories(CategoryName);
 CREATE INDEX idx_products1 ON products(CategoryID, ModifyDate);
 CREATE INDEX idx_products2 ON products(Resistant, Price);
-explain (SELECT 
+SELECT 
     c.CategoryName,
     COUNT(p.ProductID) AS TotalProducts,
     AVG(if(p.Resistant = 'durable', p.Price, null)) AS AvgResistantPrice,
@@ -16,4 +16,4 @@ WHERE
     AND p.ModifyDate >= '2017-01-01' and p.ModifyDate <= '2017-12-31'
 GROUP BY c.CategoryName
 HAVING TotalProducts > 5
-ORDER BY AvgResistantPrice DESC)
+ORDER BY AvgResistantPrice DESC;
