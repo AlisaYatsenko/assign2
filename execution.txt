@@ -1,1 +1,9 @@
 
+-> Sort: AvgResistantPrice DESC  (actual time=6.16..6.17 rows=7 loops=1)
+    -> Filter: (TotalProducts > 5)  (actual time=6.04..6.05 rows=7 loops=1)
+        -> Table scan on <temporary>  (actual time=6.03..6.04 rows=7 loops=1)
+            -> Aggregate using temporary table  (actual time=6.03..6.03 rows=7 loops=1)
+                -> Nested loop inner join  (cost=51.1 rows=50.2) (actual time=0.164..4.09 rows=221 loops=1)
+                    -> Filter: ((c.CategoryName like '%e%') and (c.CategoryID is not null))  (cost=1.35 rows=1.22) (actual time=0.0868..0.264 rows=7 loops=1)
+                        -> Table scan on c  (cost=1.35 rows=11) (actual time=0.0521..0.187 rows=11 loops=1)
+                    -> Index lookup on p using idx_products1 (CategoryID=c.CategoryID), with index condition: ((p.ModifyDate >= '2017-01-01') and (p.ModifyDate <= '2017-12-31'))  (cost=4.12 rows=41.1) (actual time=0.0311..0.535 rows=31.6 loops=7)
