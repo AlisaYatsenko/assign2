@@ -14,7 +14,7 @@ LEFT JOIN (
 ) v ON v.CategoryID = p.CategoryID
 WHERE 
     LOWER(c.CategoryName) LIKE '%e%'
-    AND YEAR(p.ModifyDate) = 2017
+    AND YEAR(p.ModifyDate) = 2024
 GROUP BY c.CategoryName
 HAVING TotalProducts > 5
 ORDER BY AvgResistantPrice DESC;
